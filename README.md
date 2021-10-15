@@ -1,4 +1,4 @@
-# <p align="center" width="100%"> <img src="./logo.png" width="250" height="250"> </p> 
+# <p align="center" width="100%"> <img src="https://images.squarespace-cdn.com/content/v1/56b52779b6aa604bd212b0f1/1484949428412-LVJB9UCN82SZREXTCJCI/asana.png?format=500w" width="250" height="250"> </p> 
 # <p align="center" width="100%"> Asana OIH Connector </p>
 
 ## Description
