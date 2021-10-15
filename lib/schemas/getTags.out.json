@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+            "type": "string",
+            "example": "Stuff to buy"
+        }
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "task_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "parent": {
+                            "description": "The new parent of the task, or `null` for no parent.",
+                            "type": "string",
+                            "example": "987654"
+                        },
+                        "insert_after": {
+                            "description": "A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.",
+                            "type": "string",
+                            "example": "null"
+                        },
+                        "insert_before": {
+                            "description": "A subtask of the parent to insert the task before, or `null` to insert at the end of the list.",
+                            "type": "string",
+                            "example": "124816"
+                        }
+                    },
+                    "required": [
+                        "parent"
+                    ]
+                }
+            }
+        }
+    }
+}

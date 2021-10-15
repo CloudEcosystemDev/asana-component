@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "workspace_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

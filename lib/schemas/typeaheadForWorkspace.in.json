@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "workspace_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "resource_type": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "custom_field",
+                "portfolio",
+                "project",
+                "tag",
+                "task",
+                "user"
+            ],
+            "default": "user"
+        },
+        "type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "custom_field",
+                "portfolio",
+                "project",
+                "tag",
+                "task",
+                "user"
+            ],
+            "default": "user"
+        },
+        "query": {
+            "type": "string"
+        },
+        "count": {
+            "type": "integer"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "workspace": {
+            "required": true,
+            "type": "string"
+        },
+        "resource": {
+            "type": "string"
+        }
+    }
+}

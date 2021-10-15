@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the file.",
+            "type": "string",
+            "readOnly": true,
+            "example": "Screenshot.png"
+        },
+        "resource_subtype": {
+            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.\n`external` attachments are a beta feature currently limited to specific integrations."
+        }
+    }
+}

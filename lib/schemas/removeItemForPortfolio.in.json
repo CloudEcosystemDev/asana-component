@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "item"
+                    ],
+                    "properties": {
+                        "item": {
+                            "description": "The item to remove from the portfolio.",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

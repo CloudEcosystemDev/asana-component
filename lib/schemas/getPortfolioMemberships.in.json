@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio": {
+            "type": "string"
+        },
+        "workspace": {
+            "type": "string"
+        },
+        "user": {
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}

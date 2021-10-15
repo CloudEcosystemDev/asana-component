@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "project_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "project": {
+                            "description": "The project in which to reorder the given section.",
+                            "type": "string",
+                            "example": "123456"
+                        },
+                        "section": {
+                            "description": "The section to reorder.",
+                            "type": "string",
+                            "example": "321654"
+                        },
+                        "before_section": {
+                            "description": "Insert the given section immediately before the section specified by this parameter.",
+                            "type": "string",
+                            "example": "86420"
+                        },
+                        "after_section": {
+                            "description": "Insert the given section immediately after the section specified by this parameter.",
+                            "type": "string",
+                            "example": "987654"
+                        }
+                    },
+                    "required": [
+                        "project",
+                        "section"
+                    ]
+                }
+            }
+        }
+    }
+}

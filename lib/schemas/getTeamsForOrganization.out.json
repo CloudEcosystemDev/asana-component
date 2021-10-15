@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the team.",
+            "type": "string",
+            "example": "Marketing"
+        }
+    }
+}

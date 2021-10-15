@@ -1,0 +1,191 @@
+{
+    "type": "object",
+    "properties": {
+        "user": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "user"
+                            },
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "*Read-only except when same user as requester*. The user’s name.",
+                                    "example": "Greg Sanchez"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "description": "The user who triggered the event."
+                }
+            ]
+        },
+        "resource": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "The name of the object.",
+                                    "type": "string",
+                                    "example": "Bug Task"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "description": "The resource which has triggered the event by being modified in some way."
+                }
+            ]
+        },
+        "type": {
+            "description": "*Deprecated: Refer to the resource_type of the resource.* The type of the resource that generated the event.",
+            "type": "string",
+            "readOnly": true,
+            "example": "task"
+        },
+        "action": {
+            "description": "The type of action taken on the **resource** that triggered the event.  This can be one of `changed`, `added`, `removed`, `deleted`, or `undeleted` depending on the nature of the event.",
+            "type": "string",
+            "readOnly": true,
+            "example": "changed"
+        },
+        "parent": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "The name of the object.",
+                                    "type": "string",
+                                    "example": "Bug Task"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "description": "For added/removed events, the parent object that resource was added to or removed from. The parent will be `null` for other event types."
+                }
+            ]
+        },
+        "created_at": {
+            "description": "The timestamp when the event occurred.",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "example": "2012-02-22T02:06:58.147Z"
+        },
+        "change": {
+            "type": "object",
+            "description": "Information about the type of change that has occurred. This field is only present when the value of the property `action`, describing the action taken on the **resource**, is `changed`.",
+            "readOnly": true,
+            "properties": {
+                "field": {
+                    "description": "The name of the field that has changed in the resource.",
+                    "type": "string",
+                    "readOnly": true,
+                    "example": "assignee"
+                },
+                "action": {
+                    "description": "The type of action taken on the **field** which has been changed.  This can be one of `changed`, `added`, or `removed` depending on the nature of the change.",
+                    "type": "string",
+                    "readOnly": true,
+                    "example": "changed"
+                },
+                "new_value": {
+                    "description": "*Conditional.* This property is only present when the **field's** `action` is `changed` and the `new_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.",
+                    "example": {
+                        "gid": "12345",
+                        "resource_type": "user"
+                    }
+                },
+                "added_value": {
+                    "description": "*Conditional.* This property is only present when the **field's** `action` is `added` and the `added_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.",
+                    "example": {
+                        "gid": "12345",
+                        "resource_type": "user"
+                    }
+                },
+                "removed_value": {
+                    "description": "*Conditional.* This property is only present when the **field's** `action` is `removed` and the `removed_value` is an Asana resource. This will be only the `gid` and `resource_type` of the resource when the events come from webhooks; this will be the compact representation (and can have fields expanded with [opt_fields](/docs/input-output-options)) when using the [Events](/docs/asana-events) resource.",
+                    "example": {
+                        "gid": "12345",
+                        "resource_type": "user"
+                    }
+                }
+            }
+        }
+    }
+}

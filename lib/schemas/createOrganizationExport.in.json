@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "description": "An *organization_export* request starts a job to export the complete data of the given Organization.",
+                    "properties": {
+                        "organization": {
+                            "description": "Globally unique identifier for the workspace or organization.",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

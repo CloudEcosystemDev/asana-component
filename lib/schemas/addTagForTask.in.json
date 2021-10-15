@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "task_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "tag": {
+                            "description": "The tag to add to the task.",
+                            "type": "string",
+                            "example": "13579"
+                        }
+                    },
+                    "required": [
+                        "tag"
+                    ]
+                }
+            }
+        }
+    }
+}

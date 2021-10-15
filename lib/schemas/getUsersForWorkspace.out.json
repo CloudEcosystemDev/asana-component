@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "*Read-only except when same user as requester*. The user’s name.",
+            "example": "Greg Sanchez"
+        }
+    }
+}

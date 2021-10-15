@@ -1,0 +1,568 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "The *task* is the basic object around which many operations in Asana are centered.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "task"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of the task.",
+                                                    "type": "string",
+                                                    "example": "Bug Task"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "approval_status": {
+                                            "type": "string",
+                                            "description": "*Conditional* Reflects the approval status of this task. This field is kept in sync with `completed`, meaning `pending` translates to false while `approved`, `rejected`, and `changes_requested` translate to true. If you set completed to true, this field will be set to `approved`.",
+                                            "enum": [
+                                                "pending",
+                                                "approved",
+                                                "rejected",
+                                                "changes_requested"
+                                            ],
+                                            "example": "pending"
+                                        },
+                                        "completed": {
+                                            "description": "True if the task is currently marked complete, false if not.",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "completed_at": {
+                                            "description": "The time at which this task was completed, or null if the task is incomplete.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "readOnly": true,
+                                            "nullable": true,
+                                            "example": "2012-02-22T02:06:58.147Z"
+                                        },
+                                        "completed_by": {
+                                            "readOnly": true,
+                                            "allOf": [
+                                                {
+                                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "gid": {
+                                                            "description": "Globally unique identifier of the resource, as a string.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "12345",
+                                                            "x-insert-after": false
+                                                        },
+                                                        "resource_type": {
+                                                            "description": "The base type of this resource.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "task",
+                                                            "x-insert-after": "gid"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                    "x-docs-overrides": {
+                                                        "properties.resource_type.example": "user"
+                                                    },
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                            "example": "Greg Sanchez"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "created_at": {
+                                            "description": "The time at which this resource was created.",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "readOnly": true,
+                                            "example": "2012-02-22T02:06:58.147Z"
+                                        },
+                                        "dependencies": {
+                                            "description": "[Opt In](/docs/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.",
+                                            "type": "array",
+                                            "items": {
+                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345",
+                                                        "x-insert-after": false
+                                                    },
+                                                    "resource_type": {
+                                                        "description": "The base type of this resource.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "task",
+                                                        "x-insert-after": "gid"
+                                                    }
+                                                }
+                                            },
+                                            "readOnly": true
+                                        },
+                                        "dependents": {
+                                            "description": "[Opt In](/docs/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.",
+                                            "type": "array",
+                                            "items": {
+                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345",
+                                                        "x-insert-after": false
+                                                    },
+                                                    "resource_type": {
+                                                        "description": "The base type of this resource.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "task",
+                                                        "x-insert-after": "gid"
+                                                    }
+                                                }
+                                            },
+                                            "readOnly": true
+                                        },
+                                        "due_at": {
+                                            "description": "The UTC date and time on which this task is due, or null if the task has no due time. This takes an ISO 8601 date string in UTC and should not be used together with `due_on`.",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2019-09-15T02:06:58.147Z",
+                                            "nullable": true
+                                        },
+                                        "due_on": {
+                                            "description": "The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2019-09-15",
+                                            "nullable": true
+                                        },
+                                        "external": {
+                                            "description": "*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/docs/input-output-options).\nThe external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "type": "string",
+                                                    "example": "1234"
+                                                },
+                                                "data": {
+                                                    "type": "string",
+                                                    "example": "A blob of information."
+                                                }
+                                            },
+                                            "example": {
+                                                "gid": "my_gid",
+                                                "data": "A blob of information"
+                                            }
+                                        },
+                                        "html_notes": {
+                                            "description": "[Opt In](/docs/input-output-options). The notes of the text with formatting as HTML.",
+                                            "type": "string",
+                                            "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>"
+                                        },
+                                        "hearted": {
+                                            "description": "*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.",
+                                            "type": "boolean",
+                                            "example": true,
+                                            "readOnly": true
+                                        },
+                                        "hearts": {
+                                            "description": "*Deprecated - please use likes instead* Array of likes for users who have hearted this task.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "description": "An object to represent a user's like.",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the object, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345"
+                                                    },
+                                                    "user": {
+                                                        "allOf": [
+                                                            {
+                                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "gid": {
+                                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "12345",
+                                                                        "x-insert-after": false
+                                                                    },
+                                                                    "resource_type": {
+                                                                        "description": "The base type of this resource.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "task",
+                                                                        "x-insert-after": "gid"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                                "x-docs-overrides": {
+                                                                    "properties.resource_type.example": "user"
+                                                                },
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                                        "example": "Greg Sanchez"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "readOnly": true
+                                        },
+                                        "is_rendered_as_separator": {
+                                            "description": "[Opt In](/docs/input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](/docs/asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.",
+                                            "type": "boolean",
+                                            "example": false,
+                                            "readOnly": true
+                                        },
+                                        "liked": {
+                                            "description": "True if the task is liked by the authorized user, false if not.",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "likes": {
+                                            "description": "Array of likes for users who have liked this task.",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "description": "An object to represent a user's like.",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the object, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345"
+                                                    },
+                                                    "user": {
+                                                        "allOf": [
+                                                            {
+                                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "gid": {
+                                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "12345",
+                                                                        "x-insert-after": false
+                                                                    },
+                                                                    "resource_type": {
+                                                                        "description": "The base type of this resource.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "task",
+                                                                        "x-insert-after": "gid"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                                "x-docs-overrides": {
+                                                                    "properties.resource_type.example": "user"
+                                                                },
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "type": "string",
+                                                                        "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                                        "example": "Greg Sanchez"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            "readOnly": true
+                                        },
+                                        "memberships": {
+                                            "description": "*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.",
+                                            "type": "array",
+                                            "readOnly": true,
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "project": {
+                                                        "allOf": [
+                                                            {
+                                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "gid": {
+                                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "12345",
+                                                                        "x-insert-after": false
+                                                                    },
+                                                                    "resource_type": {
+                                                                        "description": "The base type of this resource.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "task",
+                                                                        "x-insert-after": "gid"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                                                                "x-docs-overrides": {
+                                                                    "properties.resource_type.example": "project"
+                                                                },
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                                                                        "type": "string",
+                                                                        "example": "Stuff to buy"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    "section": {
+                                                        "allOf": [
+                                                            {
+                                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "gid": {
+                                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "12345",
+                                                                        "x-insert-after": false
+                                                                    },
+                                                                    "resource_type": {
+                                                                        "description": "The base type of this resource.",
+                                                                        "type": "string",
+                                                                        "readOnly": true,
+                                                                        "example": "task",
+                                                                        "x-insert-after": "gid"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "description": "A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.",
+                                                                "x-docs-overrides": {
+                                                                    "properties.resource_type.example": "section"
+                                                                },
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "description": "The name of the section (i.e. the text displayed as the section header).",
+                                                                        "type": "string",
+                                                                        "example": "Next Actions"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "modified_at": {
+                                            "description": "The time at which this task was last modified.\n\n*Note: This does not currently reflect any changes in\nassociations such as projects or comments that may have been\nadded or removed from the task.*",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "readOnly": true,
+                                            "example": "2012-02-22T02:06:58.147Z"
+                                        },
+                                        "name": {
+                                            "description": "Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                                            "type": "string",
+                                            "example": "Buy catnip"
+                                        },
+                                        "notes": {
+                                            "description": "More detailed, free-form textual information associated with the task.",
+                                            "type": "string",
+                                            "example": "Mittens really likes the stuff from Humboldt."
+                                        },
+                                        "num_hearts": {
+                                            "description": "*Deprecated - please use likes instead* The number of users who have hearted this task.",
+                                            "type": "integer",
+                                            "example": 5,
+                                            "readOnly": true
+                                        },
+                                        "num_likes": {
+                                            "description": "The number of users who have liked this task.",
+                                            "type": "integer",
+                                            "example": 5,
+                                            "readOnly": true
+                                        },
+                                        "num_subtasks": {
+                                            "description": "[Opt In](/docs/input-output-options). The number of subtasks on this task.\n",
+                                            "type": "integer",
+                                            "example": 3,
+                                            "readOnly": true
+                                        },
+                                        "resource_subtype": {
+                                            "type": "string",
+                                            "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.",
+                                            "enum": [
+                                                "default_task",
+                                                "milestone",
+                                                "section",
+                                                "approval"
+                                            ],
+                                            "example": "default_task"
+                                        },
+                                        "start_on": {
+                                            "description": "The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.\n*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*",
+                                            "type": "string",
+                                            "nullable": true,
+                                            "format": "date",
+                                            "example": "2019-09-14"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "assignee": {
+                                    "type": "string",
+                                    "readOnly": false,
+                                    "x-env-variable": true,
+                                    "description": "Gid of a user.",
+                                    "example": "12345",
+                                    "nullable": true
+                                },
+                                "custom_fields": {
+                                    "description": "An object where each key is a Custom Field gid and each value is an enum gid, string, or number.",
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "type": "string",
+                                        "description": "\"{custom_field_gid}\" => Value (Can be text, number, etc.)"
+                                    },
+                                    "example": {
+                                        "5678904321": "On Hold",
+                                        "4578152156": "Not Started"
+                                    }
+                                },
+                                "followers": {
+                                    "type": "array",
+                                    "description": "*Create-Only* An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user. In order to change followers on an existing task use `addFollowers` and `removeFollowers`.",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "Gid of a user."
+                                    },
+                                    "example": [
+                                        "12345"
+                                    ]
+                                },
+                                "parent": {
+                                    "type": "string",
+                                    "readOnly": false,
+                                    "x-env-variable": true,
+                                    "description": "Gid of a task.",
+                                    "example": "12345",
+                                    "nullable": true
+                                },
+                                "projects": {
+                                    "type": "array",
+                                    "description": "*Create-Only* Array of project gids. In order to change projects on an existing task use `addProject` and `removeProject`.",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "Gid of a project."
+                                    },
+                                    "example": [
+                                        "12345"
+                                    ]
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "description": "*Create-Only* Array of tag gids. In order to change tags on an existing task use `addTag` and `removeTag`.",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "Gid of a tag."
+                                    },
+                                    "example": [
+                                        "12345"
+                                    ]
+                                },
+                                "workspace": {
+                                    "type": "string",
+                                    "readOnly": false,
+                                    "x-env-variable": true,
+                                    "description": "Gid of a workspace.",
+                                    "example": "12345"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

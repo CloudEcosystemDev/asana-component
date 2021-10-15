@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "user_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "organization": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

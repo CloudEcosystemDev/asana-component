@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "properties": {
+        "resource_subtype": {
+            "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.",
+            "type": "string",
+            "readOnly": true,
+            "example": "duplicate_task"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "not_started",
+                "in_progress",
+                "completed",
+                "failed"
+            ],
+            "readOnly": true,
+            "example": "in_progress"
+        },
+        "new_project": {
+            "allOf": [
+                {
+                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                    "type": "object",
+                    "properties": {
+                        "gid": {
+                            "description": "Globally unique identifier of the resource, as a string.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "12345",
+                            "x-insert-after": false
+                        },
+                        "resource_type": {
+                            "description": "The base type of this resource.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "task",
+                            "x-insert-after": "gid"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "project"
+                    },
+                    "properties": {
+                        "name": {
+                            "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                            "type": "string",
+                            "example": "Stuff to buy"
+                        }
+                    }
+                }
+            ]
+        },
+        "new_task": {
+            "allOf": [
+                {
+                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                    "type": "object",
+                    "properties": {
+                        "gid": {
+                            "description": "Globally unique identifier of the resource, as a string.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "12345",
+                            "x-insert-after": false
+                        },
+                        "resource_type": {
+                            "description": "The base type of this resource.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "task",
+                            "x-insert-after": "gid"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "The *task* is the basic object around which many operations in Asana are centered.",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "task"
+                    },
+                    "properties": {
+                        "name": {
+                            "description": "The name of the task.",
+                            "type": "string",
+                            "example": "Bug Task"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

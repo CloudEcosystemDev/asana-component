@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "custom_field"
+                    ],
+                    "properties": {
+                        "custom_field": {
+                            "description": "The custom field to remove from this portfolio.",
+                            "type": "string",
+                            "example": "14916"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

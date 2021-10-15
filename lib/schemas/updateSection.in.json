@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "section_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "project": {
+                            "description": "*Create-Only* The project to create the section in",
+                            "type": "string",
+                            "example": "13579"
+                        },
+                        "name": {
+                            "description": "The text to be displayed as the section name. This cannot be an empty string.",
+                            "type": "string",
+                            "example": "Next Actions"
+                        },
+                        "insert_before": {
+                            "description": "An existing section within this project before which the added section should be inserted. Cannot be provided together with insert_after.",
+                            "type": "string",
+                            "example": "86420"
+                        },
+                        "insert_after": {
+                            "description": "An existing section within this project after which the added section should be inserted. Cannot be provided together with insert_before.",
+                            "type": "string",
+                            "example": "987654"
+                        }
+                    },
+                    "required": [
+                        "project",
+                        "name"
+                    ]
+                }
+            }
+        }
+    }
+}

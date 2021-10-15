@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "completed_since": {
+            "required": false,
+            "type": "string"
+        },
+        "user_task_list_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}

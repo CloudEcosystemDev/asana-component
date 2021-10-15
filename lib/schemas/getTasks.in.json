@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "assignee": {
+            "type": "string"
+        },
+        "project": {
+            "type": "string"
+        },
+        "section": {
+            "type": "string"
+        },
+        "workspace": {
+            "type": "string"
+        },
+        "completed_since": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-02-22T02:06:58.158Z"
+        },
+        "modified_since": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

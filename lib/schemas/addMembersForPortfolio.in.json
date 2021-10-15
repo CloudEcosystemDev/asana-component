@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "members"
+                    ],
+                    "properties": {
+                        "members": {
+                            "description": "An array of strings identifying users. These can either be the string \"me\", an email, or the gid of a user.",
+                            "type": "string",
+                            "example": "521621,621373"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

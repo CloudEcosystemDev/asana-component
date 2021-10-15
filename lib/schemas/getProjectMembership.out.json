@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "project": {
+            "description": "[Opt In](/docs/input-output-options). The project the user is a member of.",
+            "allOf": [
+                {
+                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                    "type": "object",
+                    "properties": {
+                        "gid": {
+                            "description": "Globally unique identifier of the resource, as a string.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "12345",
+                            "x-insert-after": false
+                        },
+                        "resource_type": {
+                            "description": "The base type of this resource.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "task",
+                            "x-insert-after": "gid"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "project"
+                    },
+                    "properties": {
+                        "name": {
+                            "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                            "type": "string",
+                            "example": "Stuff to buy"
+                        }
+                    }
+                }
+            ]
+        },
+        "write_access": {
+            "description": "Whether the user has full access to the project or has comment-only access.",
+            "type": "string",
+            "enum": [
+                "full_write",
+                "comment_only"
+            ],
+            "readOnly": true,
+            "example": "full_write"
+        }
+    }
+}

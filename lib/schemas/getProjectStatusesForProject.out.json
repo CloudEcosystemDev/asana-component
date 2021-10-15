@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "The title of the project status update.",
+            "type": "string",
+            "example": "Status Update - Jun 15"
+        }
+    }
+}

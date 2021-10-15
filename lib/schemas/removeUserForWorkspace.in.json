@@ -1,0 +1,36 @@
+{
+    "type": "object",
+    "properties": {
+        "workspace_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "description": "A user identification object for specification with the addUser/removeUser endpoints.",
+                    "properties": {
+                        "user": {
+                            "description": "A string identifying a user. This can either be the string \"me\", an email, or the gid of a user.",
+                            "type": "string",
+                            "example": "12345"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

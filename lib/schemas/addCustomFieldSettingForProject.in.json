@@ -1,0 +1,46 @@
+{
+    "type": "object",
+    "properties": {
+        "project_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "custom_field"
+                    ],
+                    "properties": {
+                        "custom_field": {
+                            "description": "The custom field to associate with this container.",
+                            "type": "string",
+                            "example": "14916"
+                        },
+                        "is_important": {
+                            "description": "Whether this field should be considered important to this container (for instance, to display in the list view of items in the container).",
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "insert_before": {
+                            "description": "A gid of a Custom Field Setting on this container, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        },
+                        "insert_after": {
+                            "description": "A gid of a Custom Field Setting on this container, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

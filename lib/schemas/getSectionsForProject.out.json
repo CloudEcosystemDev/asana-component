@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "The name of the section (i.e. the text displayed as the section header).",
+            "type": "string",
+            "example": "Next Actions"
+        }
+    }
+}

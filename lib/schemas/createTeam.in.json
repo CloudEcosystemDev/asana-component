@@ -1,0 +1,89 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "team"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of the team.",
+                                            "type": "string",
+                                            "example": "Marketing"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "The description of the team.\n",
+                                    "type": "string",
+                                    "example": "All developers should be members of this team."
+                                },
+                                "html_description": {
+                                    "description": "The description of the team with formatting as HTML.\n",
+                                    "type": "string",
+                                    "example": "<body><em>All</em> developers should be members of this team.</body>"
+                                },
+                                "organization": {
+                                    "type": "string",
+                                    "description": "The organization/workspace the team belongs to.\n",
+                                    "example": "123456789"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "email_domains": {
+            "description": "The email domains that are associated with this workspace.",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "format": "uri"
+            },
+            "example": [
+                "asana.com"
+            ]
+        },
+        "is_organization": {
+            "description": "Whether the workspace is an *organization*.",
+            "type": "boolean",
+            "example": false
+        }
+    }
+}

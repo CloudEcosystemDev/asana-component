@@ -1,0 +1,43 @@
+{
+    "type": "object",
+    "properties": {
+        "task_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "dependencies": {
+                            "description": "An array of task gids that a task depends on.",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "example": {
+                        "dependencies": [
+                            "133713",
+                            "184253"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

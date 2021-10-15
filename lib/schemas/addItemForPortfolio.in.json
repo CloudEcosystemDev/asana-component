@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "item"
+                    ],
+                    "properties": {
+                        "item": {
+                            "description": "The item to add to the portfolio.",
+                            "type": "string",
+                            "example": "1331"
+                        },
+                        "insert_before": {
+                            "description": "An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        },
+                        "insert_after": {
+                            "description": "An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

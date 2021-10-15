@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "properties": {
+        "task_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "The name of the new task.",
+                            "type": "string",
+                            "example": "New Task Name"
+                        },
+                        "include": {
+                            "description": "The fields that will be duplicated to the new task.",
+                            "type": "string",
+                            "enum": [
+                                "notes",
+                                "assignee",
+                                "subtasks",
+                                "attachments",
+                                "tags",
+                                "followers",
+                                "projects",
+                                "dates",
+                                "dependencies",
+                                "parent"
+                            ],
+                            "example": [
+                                "notes",
+                                "assignee"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
