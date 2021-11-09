@@ -88,6 +88,11 @@
                                                 "light-warm-gray"
                                             ],
                                             "example": "light-green"
+                                        },
+                                        "notes": {
+                                            "description": "Free-form textual information associated with the tag (i.e. its description).",
+                                            "type": "string",
+                                            "example": "Mittens really likes the stuff from Humboldt."
                                         }
                                     }
                                 }
@@ -96,6 +101,13 @@
                         {
                             "type": "object",
                             "properties": {
+                                "created_at": {
+                                    "description": "The time at which this resource was created.",
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "example": "2012-02-22T02:06:58.147Z"
+                                },
                                 "followers": {
                                     "description": "Array of users following this tag.",
                                     "type": "array",

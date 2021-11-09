@@ -46,6 +46,7 @@
                                 "enum": [
                                     "text",
                                     "enum",
+                                    "multi_enum",
                                     "number"
                                 ]
                             },
@@ -56,6 +57,7 @@
                                 "enum": [
                                     "text",
                                     "enum",
+                                    "multi_enum",
                                     "number"
                                 ]
                             },
@@ -138,7 +140,7 @@
             }
         },
         "followers": {
-            "description": "Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.",
+            "description": "Array of users following this project. Followers are a subset of members who have opted in to receive \"tasks added\" notifications for a project.",
             "type": "array",
             "items": {
                 "allOf": [

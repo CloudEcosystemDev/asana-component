@@ -9,7 +9,7 @@
             "example": "2012-02-22T02:06:58.147Z"
         },
         "download_url": {
-            "description": "The URL containing the content of the attachment.\n*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
+            "description": "The URL containing the content of the attachment.\n*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/) and will be null if the attachment is a Video Message hosted by [Vimeo](https://vimeo.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
             "type": "string",
             "format": "uri",
             "readOnly": true,
@@ -17,7 +17,7 @@
             "example": "https://s3.amazonaws.com/assets/123/Screenshot.png"
         },
         "host": {
-            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.",
+            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.",
             "type": "string",
             "readOnly": true,
             "example": "dropbox"

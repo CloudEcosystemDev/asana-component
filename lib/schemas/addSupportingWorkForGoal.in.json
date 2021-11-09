@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "supporting_work"
+                    ],
+                    "properties": {
+                        "supporting_work": {
+                            "description": "The project/portfolio gid to add as supporting work for a goal",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

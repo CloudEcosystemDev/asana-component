@@ -16,9 +16,6 @@
                 "type": "string"
             }
         },
-        "limit": {
-            "type": "integer"
-        },
         "offset": {
             "type": "string"
         }

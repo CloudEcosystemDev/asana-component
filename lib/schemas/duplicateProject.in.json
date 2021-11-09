@@ -41,6 +41,7 @@
                             "enum": [
                                 "members",
                                 "notes",
+                                "forms",
                                 "task_notes",
                                 "task_assignee",
                                 "task_subtasks",

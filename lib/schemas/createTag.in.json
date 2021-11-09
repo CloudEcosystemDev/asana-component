@@ -84,6 +84,11 @@
                                                 "light-warm-gray"
                                             ],
                                             "example": "light-green"
+                                        },
+                                        "notes": {
+                                            "description": "Free-form textual information associated with the tag (i.e. its description).",
+                                            "type": "string",
+                                            "example": "Mittens really likes the stuff from Humboldt."
                                         }
                                     }
                                 }

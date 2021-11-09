@@ -1,0 +1,66 @@
+{
+    "type": "object",
+    "properties": {
+        "parent": {
+            "allOf": [
+                {
+                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                    "type": "object",
+                    "properties": {
+                        "gid": {
+                            "description": "Globally unique identifier of the resource, as a string.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "12345",
+                            "x-insert-after": false
+                        },
+                        "resource_type": {
+                            "description": "The base type of this resource.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "task",
+                            "x-insert-after": "gid"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "time_period"
+                    },
+                    "properties": {
+                        "end_on": {
+                            "type": "string",
+                            "description": "The localized end date of the time period in `YYYY-MM-DD` format.",
+                            "example": "2019-09-14"
+                        },
+                        "start_on": {
+                            "type": "string",
+                            "description": "The localized start date of the time period in `YYYY-MM-DD` format.",
+                            "example": "2019-09-13"
+                        },
+                        "period": {
+                            "type": "string",
+                            "description": "The cadence and index of the time period. The value is one of: `FY`, `H1`, `H2`, `Q1`, `Q2`, `Q3`, or `Q4`.",
+                            "enum": [
+                                "FY",
+                                "H1",
+                                "H2",
+                                "Q1",
+                                "Q2",
+                                "Q3",
+                                "Q4"
+                            ],
+                            "example": "Q1"
+                        },
+                        "display_name": {
+                            "type": "string",
+                            "description": "A string representing the cadence code and the fiscal year.",
+                            "example": "Q1 FY22"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "subgoal"
+                    ],
+                    "properties": {
+                        "subgoal": {
+                            "description": "The goal gid to add as subgoal to a parent goal",
+                            "type": "string",
+                            "example": "1331"
+                        },
+                        "insert_before": {
+                            "description": "An id of a subgoal of this parent goal. The new subgoal will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        },
+                        "insert_after": {
+                            "description": "An id of a subgoal of this parent goal. The new subgoal will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

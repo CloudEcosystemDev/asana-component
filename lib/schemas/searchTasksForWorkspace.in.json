@@ -121,9 +121,6 @@
         "teams_any": {
             "type": "string"
         },
-        "followers_any": {
-            "type": "string"
-        },
         "followers_not": {
             "type": "string"
         },
@@ -139,13 +136,7 @@
         "assigned_by_not": {
             "type": "string"
         },
-        "liked_by_any": {
-            "type": "string"
-        },
         "liked_by_not": {
-            "type": "string"
-        },
-        "commented_on_by_any": {
             "type": "string"
         },
         "commented_on_by_not": {

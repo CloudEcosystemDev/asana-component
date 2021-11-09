@@ -25,9 +25,31 @@
         "requestBody": {
             "type": "object",
             "properties": {
+                "resource_subtype": {
+                    "description": "The type of the attachment. Must be one of the [given values](/docs/attachment). If not specified, a file attachment of type `asana_file_attachments` will be assumed. Note that if the value of `resource_subtype` is `external`, a `parent`, `name`, and `url` must also be provided.\n",
+                    "type": "string",
+                    "example": "external",
+                    "enum": [
+                        "asana_file_attachments",
+                        "external"
+                    ]
+                },
                 "file": {
+                    "description": "Required for file attachments.\n",
                     "type": "string",
                     "format": "binary"
+                },
+                "parent": {
+                    "description": "Globally unique identifier of the parent task, as a string. Required for attachments of type `external`.\n",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL of the external resource being attached. Required for attachments of type `external`.\n",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the external resource being attached. Required for attachments of type `external`.\n",
+                    "type": "string"
                 }
             }
         }

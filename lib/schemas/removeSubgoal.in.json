@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "subgoal"
+                    ],
+                    "properties": {
+                        "subgoal": {
+                            "description": "The goal gid to remove as subgoal from the parent goal",
+                            "type": "string",
+                            "example": "1331"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

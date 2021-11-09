@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "workspace_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "start_at": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "end_at": {
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+        },
+        "event_type": {
+            "required": false,
+            "type": "string"
+        },
+        "actor_type": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "user",
+                "asana",
+                "asana_support",
+                "anonymous",
+                "external_administrator"
+            ]
+        },
+        "actor_gid": {
+            "required": false,
+            "type": "string"
+        },
+        "resource_gid": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}

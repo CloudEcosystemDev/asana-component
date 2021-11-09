@@ -71,6 +71,18 @@
                                             ],
                                             "example": "pending"
                                         },
+                                        "assignee_status": {
+                                            "description": "*Deprecated* Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null. Setting this field to \"inbox\" or \"upcoming\" inserts it at the top of the section, while the other options will insert at the bottom.",
+                                            "type": "string",
+                                            "enum": [
+                                                "today",
+                                                "upcoming",
+                                                "later",
+                                                "new",
+                                                "inbox"
+                                            ],
+                                            "example": "upcoming"
+                                        },
                                         "completed": {
                                             "description": "True if the task is currently marked complete, false if not.",
                                             "type": "boolean",
@@ -188,7 +200,7 @@
                                             "nullable": true
                                         },
                                         "due_on": {
-                                            "description": "The localized date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
+                                            "description": "The localized date on which this task is due, or null if the task has no due date. This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
                                             "type": "string",
                                             "format": "date",
                                             "example": "2019-09-15",
@@ -443,7 +455,7 @@
                                             "example": "Buy catnip"
                                         },
                                         "notes": {
-                                            "description": "More detailed, free-form textual information associated with the task.",
+                                            "description": "Free-form textual information associated with the task (i.e. its description).",
                                             "type": "string",
                                             "example": "Mittens really likes the stuff from Humboldt."
                                         },
@@ -497,6 +509,12 @@
                                     "description": "Gid of a user.",
                                     "example": "12345",
                                     "nullable": true
+                                },
+                                "assignee_section": {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "description": "The *assignee section* is a subdivision of a project that groups tasks together in the assignee's \"My Tasks\" list. It can either be a header above a list of tasks in a list view or a column in a board view of \"My Tasks.\"\nThe `assignee_section` property will be returned in the response only if the request was sent by the user who is the assignee of the task. Note that you can only write to `assignee_section` with the gid of an existing section visible in the user's \"My Tasks\" list.",
+                                    "example": "12345"
                                 },
                                 "custom_fields": {
                                     "description": "An object where each key is a Custom Field gid and each value is an enum gid, string, or number.",

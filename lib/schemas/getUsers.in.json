@@ -4,6 +4,9 @@
         "workspace": {
             "type": "string"
         },
+        "team": {
+            "type": "string"
+        },
         "opt_pretty": {
             "required": false,
             "type": "boolean"

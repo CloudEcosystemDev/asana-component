@@ -8,7 +8,9 @@
             "example": "Screenshot.png"
         },
         "resource_subtype": {
-            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, and `external`.\n`external` attachments are a beta feature currently limited to specific integrations."
+            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.",
+            "type": "string",
+            "example": "dropbox"
         }
     }
 }

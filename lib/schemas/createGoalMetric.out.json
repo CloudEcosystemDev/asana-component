@@ -1,0 +1,200 @@
+{
+    "type": "object",
+    "properties": {
+        "likes": {
+            "description": "Array of likes for users who have liked this goal.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "An object to represent a user's like.",
+                "properties": {
+                    "gid": {
+                        "description": "Globally unique identifier of the object, as a string.",
+                        "type": "string",
+                        "readOnly": true,
+                        "example": "12345"
+                    },
+                    "user": {
+                        "allOf": [
+                            {
+                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                "type": "object",
+                                "properties": {
+                                    "gid": {
+                                        "description": "Globally unique identifier of the resource, as a string.",
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "example": "12345",
+                                        "x-insert-after": false
+                                    },
+                                    "resource_type": {
+                                        "description": "The base type of this resource.",
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "example": "task",
+                                        "x-insert-after": "gid"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                "x-docs-overrides": {
+                                    "properties.resource_type.example": "user"
+                                },
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "*Read-only except when same user as requester*. The user’s name.",
+                                        "example": "Greg Sanchez"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "readOnly": true
+        },
+        "num_likes": {
+            "description": "The number of users who have liked this goal.",
+            "type": "integer",
+            "readOnly": true,
+            "example": 5
+        },
+        "team": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "description": "A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "team"
+                            },
+                            "properties": {
+                                "name": {
+                                    "description": "The name of the team.",
+                                    "type": "string",
+                                    "example": "Marketing"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "nullable": true
+                }
+            ],
+            "description": "*Conditional*. This property is only present when the `workspace` provided is an organization."
+        },
+        "workspace": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "workspace"
+                            },
+                            "properties": {
+                                "name": {
+                                    "description": "The name of the workspace.",
+                                    "type": "string",
+                                    "example": "My Company Workspace"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "followers": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                        "type": "object",
+                        "properties": {
+                            "gid": {
+                                "description": "Globally unique identifier of the resource, as a string.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "12345",
+                                "x-insert-after": false
+                            },
+                            "resource_type": {
+                                "description": "The base type of this resource.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "task",
+                                "x-insert-after": "gid"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                        "x-docs-overrides": {
+                            "properties.resource_type.example": "user"
+                        },
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "*Read-only except when same user as requester*. The user’s name.",
+                                "example": "Greg Sanchez"
+                            }
+                        }
+                    }
+                ]
+            },
+            "description": "Array of users following this goal."
+        }
+    }
+}

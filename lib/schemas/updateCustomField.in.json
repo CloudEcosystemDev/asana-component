@@ -64,6 +64,7 @@
                                                     "enum": [
                                                         "text",
                                                         "enum",
+                                                        "multi_enum",
                                                         "number"
                                                     ]
                                                 },
@@ -74,6 +75,7 @@
                                                     "enum": [
                                                         "text",
                                                         "enum",
+                                                        "multi_enum",
                                                         "number"
                                                     ]
                                                 },

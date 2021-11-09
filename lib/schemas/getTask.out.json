@@ -44,6 +44,52 @@
                 }
             ]
         },
+        "assignee_section": {
+            "nullable": true,
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "description": "A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "section"
+                            },
+                            "properties": {
+                                "name": {
+                                    "description": "The name of the section (i.e. the text displayed as the section header).",
+                                    "type": "string",
+                                    "example": "Next Actions"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "description": "The *assignee section* is a subdivision of a project that groups tasks together in the assignee's \"My Tasks\" list. It can either be a header above a list of tasks in a list view or a column in a board view of \"My Tasks.\"\nThe `assignee_section` property will be returned in the response only if the request was sent by the user who is the assignee of the task. Note that you can only write to `assignee_section` with the gid of an existing section visible in the user's \"My Tasks\" list."
+                }
+            ]
+        },
         "custom_fields": {
             "description": "Array of custom field values applied to the task. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.",
             "type": "array",
@@ -92,6 +138,7 @@
                                                 "enum": [
                                                     "text",
                                                     "enum",
+                                                    "multi_enum",
                                                     "number"
                                                 ]
                                             },
@@ -102,6 +149,7 @@
                                                 "enum": [
                                                     "text",
                                                     "enum",
+                                                    "multi_enum",
                                                     "number"
                                                 ]
                                             },
@@ -351,6 +399,96 @@
                                     {
                                         "type": "object",
                                         "description": "*Conditional*. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field."
+                                    }
+                                ]
+                            },
+                            "multi_enum_values": {
+                                "description": "*Conditional*. Only relevant for custom fields of type `multi_enum`. This object is the chosen values of a multi_enum custom field.",
+                                "type": "array",
+                                "items": {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.\n\nYou can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "enum_option"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of the enum option.",
+                                                    "type": "string",
+                                                    "example": "Low"
+                                                },
+                                                "enabled": {
+                                                    "description": "Whether or not the enum option is a selectable value for the custom field.",
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "color": {
+                                                    "description": "The color of the enum option. Defaults to ‘none’.",
+                                                    "type": "string",
+                                                    "example": "blue"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "created_by": {
+                                "allOf": [
+                                    {
+                                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                        "type": "object",
+                                        "properties": {
+                                            "gid": {
+                                                "description": "Globally unique identifier of the resource, as a string.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "12345",
+                                                "x-insert-after": false
+                                            },
+                                            "resource_type": {
+                                                "description": "The base type of this resource.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "task",
+                                                "x-insert-after": "gid"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                        "x-docs-overrides": {
+                                            "properties.resource_type.example": "user"
+                                        },
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                "example": "Greg Sanchez"
+                                            }
+                                        }
                                     }
                                 ]
                             }

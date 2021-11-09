@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "start_on": {
+            "type": "string",
+            "format": "date"
+        },
+        "end_on": {
+            "type": "string",
+            "format": "date"
+        },
+        "workspace": {
+            "required": true,
+            "type": "string"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}

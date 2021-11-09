@@ -1,0 +1,26 @@
+{
+    "type": "object",
+    "properties": {
+        "portfolio": {
+            "type": "string"
+        },
+        "project": {
+            "type": "string"
+        },
+        "is_workspace_level": {
+            "type": "boolean"
+        },
+        "team": {
+            "type": "string"
+        },
+        "workspace": {
+            "type": "string"
+        },
+        "time_periods": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

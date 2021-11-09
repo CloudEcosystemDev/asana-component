@@ -1,6 +1,44 @@
 {
     "type": "object",
     "properties": {
+        "author": {
+            "allOf": [
+                {
+                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                    "type": "object",
+                    "properties": {
+                        "gid": {
+                            "description": "Globally unique identifier of the resource, as a string.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "12345",
+                            "x-insert-after": false
+                        },
+                        "resource_type": {
+                            "description": "The base type of this resource.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "task",
+                            "x-insert-after": "gid"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "user"
+                    },
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                            "example": "Greg Sanchez"
+                        }
+                    }
+                }
+            ]
+        },
         "created_at": {
             "description": "The time at which this resource was created.",
             "type": "string",
@@ -45,6 +83,13 @@
                     }
                 }
             ]
+        },
+        "modified_at": {
+            "description": "The time at which this project status was last modified.\n*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*",
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "example": "2012-02-22T02:06:58.147Z"
         }
     }
 }
