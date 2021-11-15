@@ -44,9 +44,6 @@
                                         {
                                             "type": "object",
                                             "description": "The *task* is the basic object around which many operations in Asana are centered.",
-                                            "x-docs-overrides": {
-                                                "properties.resource_type.example": "task"
-                                            },
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of the task.",
@@ -122,9 +119,6 @@
                                                 {
                                                     "type": "object",
                                                     "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                                                    "x-docs-overrides": {
-                                                        "properties.resource_type.example": "user"
-                                                    },
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -273,9 +267,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "user"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -339,9 +330,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "user"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -388,9 +376,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "project"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
@@ -426,9 +411,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "section"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "The name of the section (i.e. the text displayed as the section header).",

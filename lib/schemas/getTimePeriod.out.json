@@ -25,9 +25,6 @@
                 },
                 {
                     "type": "object",
-                    "x-docs-overrides": {
-                        "properties.resource_type.example": "time_period"
-                    },
                     "properties": {
                         "end_on": {
                             "type": "string",

@@ -33,9 +33,6 @@
                 {
                     "type": "object",
                     "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                    "x-docs-overrides": {
-                        "properties.resource_type.example": "user"
-                    },
                     "properties": {
                         "name": {
                             "type": "string",
@@ -75,10 +72,7 @@
                             },
                             {
                                 "type": "object",
-                                "description": "Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.",
-                                "x-docs-overrides": {
-                                    "properties.resource_type.example": "custom_field_setting"
-                                }
+                                "description": "Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing."
                             }
                         ]
                     },
@@ -112,9 +106,6 @@
                                             {
                                                 "type": "object",
                                                 "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
-                                                "x-docs-overrides": {
-                                                    "properties.resource_type.example": "project"
-                                                },
                                                 "properties": {
                                                     "name": {
                                                         "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
@@ -165,9 +156,6 @@
                                             {
                                                 "type": "object",
                                                 "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
-                                                "x-docs-overrides": {
-                                                    "properties.resource_type.example": "project"
-                                                },
                                                 "properties": {
                                                     "name": {
                                                         "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
@@ -216,9 +204,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](/docs/asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.\n\nUsers in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "custom_field"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "description": "The name of the custom field.",
@@ -275,9 +260,6 @@
                                                                                 {
                                                                                     "type": "object",
                                                                                     "description": "Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.\n\nYou can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.",
-                                                                                    "x-docs-overrides": {
-                                                                                        "properties.resource_type.example": "enum_option"
-                                                                                    },
                                                                                     "properties": {
                                                                                         "name": {
                                                                                             "description": "The name of the enum option.",
@@ -360,9 +342,6 @@
                                                                         {
                                                                             "type": "object",
                                                                             "description": "Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.\n\nYou can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.",
-                                                                            "x-docs-overrides": {
-                                                                                "properties.resource_type.example": "enum_option"
-                                                                            },
                                                                             "properties": {
                                                                                 "name": {
                                                                                     "description": "The name of the enum option.",
@@ -467,9 +446,6 @@
                                                                     {
                                                                         "type": "object",
                                                                         "description": "Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.\n\nYou can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.",
-                                                                        "x-docs-overrides": {
-                                                                            "properties.resource_type.example": "enum_option"
-                                                                        },
                                                                         "properties": {
                                                                             "name": {
                                                                                 "description": "The name of the enum option.",
@@ -524,9 +500,6 @@
                                                                 {
                                                                     "type": "object",
                                                                     "description": "Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.\n\nYou can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.",
-                                                                    "x-docs-overrides": {
-                                                                        "properties.resource_type.example": "enum_option"
-                                                                    },
                                                                     "properties": {
                                                                         "name": {
                                                                             "description": "The name of the enum option.",
@@ -573,9 +546,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                                                                "x-docs-overrides": {
-                                                                    "properties.resource_type.example": "user"
-                                                                },
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -637,9 +607,6 @@
                     {
                         "type": "object",
                         "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                        "x-docs-overrides": {
-                            "properties.resource_type.example": "user"
-                        },
                         "properties": {
                             "name": {
                                 "type": "string",
@@ -676,9 +643,6 @@
                 {
                     "type": "object",
                     "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                    "x-docs-overrides": {
-                        "properties.resource_type.example": "user"
-                    },
                     "properties": {
                         "name": {
                             "type": "string",
@@ -723,9 +687,6 @@
                         {
                             "type": "object",
                             "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
-                            "x-docs-overrides": {
-                                "properties.resource_type.example": "workspace"
-                            },
                             "properties": {
                                 "name": {
                                     "description": "The name of the workspace.",

@@ -44,9 +44,6 @@
                         {
                             "type": "object",
                             "description": "A story represents an activity associated with an object in the Asana system.",
-                            "x-docs-overrides": {
-                                "properties.resource_type.example": "story"
-                            },
                             "properties": {
                                 "created_at": {
                                     "description": "The time at which this resource was created.",

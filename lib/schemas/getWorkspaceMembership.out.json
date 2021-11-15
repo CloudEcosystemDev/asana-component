@@ -28,9 +28,6 @@
                 {
                     "type": "object",
                     "description": "A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.",
-                    "x-docs-overrides": {
-                        "properties.resource_type.example": "user_task_list"
-                    },
                     "properties": {
                         "name": {
                             "description": "The name of the user task list.",
@@ -66,9 +63,6 @@
                                         {
                                             "type": "object",
                                             "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                                            "x-docs-overrides": {
-                                                "properties.resource_type.example": "user"
-                                            },
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -110,9 +104,6 @@
                                         {
                                             "type": "object",
                                             "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
-                                            "x-docs-overrides": {
-                                                "properties.resource_type.example": "workspace"
-                                            },
                                             "properties": {
                                                 "name": {
                                                     "description": "The name of the workspace.",
