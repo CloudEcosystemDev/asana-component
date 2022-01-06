@@ -48,6 +48,9 @@
                                         {
                                             "type": "object",
                                             "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "project"
+                                            },
                                             "properties": {
                                                 "name": {
                                                     "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
@@ -131,6 +134,9 @@
                                                                         {
                                                                             "type": "object",
                                                                             "description": "A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: \"green\" for projects that are on track, \"yellow\" for projects at risk, and \"red\" for projects that are behind.",
+                                                                            "x-docs-overrides": {
+                                                                                "properties.resource_type.example": "project_status"
+                                                                            },
                                                                             "properties": {
                                                                                 "title": {
                                                                                     "description": "The title of the project status update.",
@@ -200,6 +206,9 @@
                                                                         {
                                                                             "type": "object",
                                                                             "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                                            "x-docs-overrides": {
+                                                                                "properties.resource_type.example": "user"
+                                                                            },
                                                                             "properties": {
                                                                                 "name": {
                                                                                     "type": "string",
@@ -242,6 +251,9 @@
                                                                         {
                                                                             "type": "object",
                                                                             "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                                            "x-docs-overrides": {
+                                                                                "properties.resource_type.example": "user"
+                                                                            },
                                                                             "properties": {
                                                                                 "name": {
                                                                                     "type": "string",
@@ -293,7 +305,10 @@
                                                     },
                                                     {
                                                         "type": "object",
-                                                        "description": "Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing."
+                                                        "description": "Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.",
+                                                        "x-docs-overrides": {
+                                                            "properties.resource_type.example": "custom_field_setting"
+                                                        }
                                                     }
                                                 ]
                                             }
@@ -361,6 +376,9 @@
                                                     {
                                                         "type": "object",
                                                         "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                        "x-docs-overrides": {
+                                                            "properties.resource_type.example": "user"
+                                                        },
                                                         "properties": {
                                                             "name": {
                                                                 "type": "string",
@@ -386,7 +404,7 @@
                                             "example": "These are things we need to purchase."
                                         },
                                         "public": {
-                                            "description": "True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.",
+                                            "description": "True if the project is public to its team.",
                                             "type": "boolean",
                                             "example": false
                                         },
@@ -424,6 +442,9 @@
                                                         {
                                                             "type": "object",
                                                             "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
+                                                            "x-docs-overrides": {
+                                                                "properties.resource_type.example": "workspace"
+                                                            },
                                                             "properties": {
                                                                 "name": {
                                                                     "description": "The name of the workspace.",

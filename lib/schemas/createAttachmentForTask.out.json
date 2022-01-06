@@ -1,28 +1,7 @@
 {
     "type": "object",
     "properties": {
-        "created_at": {
-            "description": "The time at which this resource was created.",
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
-        },
-        "download_url": {
-            "description": "The URL containing the content of the attachment.\n*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/) and will be null if the attachment is a Video Message hosted by [Vimeo](https://vimeo.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
-            "type": "string",
-            "format": "uri",
-            "readOnly": true,
-            "nullable": true,
-            "example": "https://s3.amazonaws.com/assets/123/Screenshot.png"
-        },
-        "host": {
-            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.",
-            "type": "string",
-            "readOnly": true,
-            "example": "dropbox"
-        },
-        "parent": {
+        "data": {
             "allOf": [
                 {
                     "allOf": [
@@ -48,12 +27,21 @@
                         },
                         {
                             "type": "object",
-                            "description": "The *task* is the basic object around which many operations in Asana are centered.",
+                            "description": "An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "attachment"
+                            },
                             "properties": {
                                 "name": {
-                                    "description": "The name of the task.",
+                                    "description": "The name of the file.",
                                     "type": "string",
-                                    "example": "Bug Task"
+                                    "readOnly": true,
+                                    "example": "Screenshot.png"
+                                },
+                                "resource_subtype": {
+                                    "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.",
+                                    "type": "string",
+                                    "example": "dropbox"
                                 }
                             }
                         }
@@ -61,18 +49,86 @@
                 },
                 {
                     "type": "object",
-                    "description": "The task this attachment is attached to.",
-                    "readOnly": true
+                    "properties": {
+                        "created_at": {
+                            "description": "The time at which this resource was created.",
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "example": "2012-02-22T02:06:58.147Z"
+                        },
+                        "download_url": {
+                            "description": "The URL containing the content of the attachment.\n*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/) and will be null if the attachment is a Video Message hosted by [Vimeo](https://vimeo.com/). If present, this URL may only be valid for two minutes from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
+                            "type": "string",
+                            "format": "uri",
+                            "readOnly": true,
+                            "nullable": true,
+                            "example": "https://s3.amazonaws.com/assets/123/Screenshot.png"
+                        },
+                        "host": {
+                            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.",
+                            "type": "string",
+                            "readOnly": true,
+                            "example": "dropbox"
+                        },
+                        "parent": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "The *task* is the basic object around which many operations in Asana are centered.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "task"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of the task.",
+                                                    "type": "string",
+                                                    "example": "Bug Task"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "The task this attachment is attached to.",
+                                    "readOnly": true
+                                }
+                            ]
+                        },
+                        "view_url": {
+                            "description": "The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.",
+                            "type": "string",
+                            "format": "uri",
+                            "readOnly": true,
+                            "nullable": true,
+                            "example": "https://www.dropbox.com/s/123/Screenshot.png"
+                        }
+                    }
                 }
             ]
-        },
-        "view_url": {
-            "description": "The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.",
-            "type": "string",
-            "format": "uri",
-            "readOnly": true,
-            "nullable": true,
-            "example": "https://www.dropbox.com/s/123/Screenshot.png"
         }
     }
 }

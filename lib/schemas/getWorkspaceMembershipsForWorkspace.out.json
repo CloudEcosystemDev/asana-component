@@ -1,75 +1,117 @@
 {
     "type": "object",
     "properties": {
-        "user": {
-            "allOf": [
-                {
-                    "description": "A generic Asana Resource, containing a globally unique identifier.",
-                    "type": "object",
-                    "properties": {
-                        "gid": {
-                            "description": "Globally unique identifier of the resource, as a string.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "12345",
-                            "x-insert-after": false
+        "data": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                        "type": "object",
+                        "properties": {
+                            "gid": {
+                                "description": "Globally unique identifier of the resource, as a string.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "12345",
+                                "x-insert-after": false
+                            },
+                            "resource_type": {
+                                "description": "The base type of this resource.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "task",
+                                "x-insert-after": "gid"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "description": "This object determines if a user is a member of a workspace.",
+                        "x-docs-overrides": {
+                            "properties.resource_type.example": "workspace_membership"
                         },
-                        "resource_type": {
-                            "description": "The base type of this resource.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "task",
-                            "x-insert-after": "gid"
+                        "properties": {
+                            "user": {
+                                "allOf": [
+                                    {
+                                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                        "type": "object",
+                                        "properties": {
+                                            "gid": {
+                                                "description": "Globally unique identifier of the resource, as a string.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "12345",
+                                                "x-insert-after": false
+                                            },
+                                            "resource_type": {
+                                                "description": "The base type of this resource.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "task",
+                                                "x-insert-after": "gid"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                        "x-docs-overrides": {
+                                            "properties.resource_type.example": "user"
+                                        },
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                "example": "Greg Sanchez"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "workspace": {
+                                "allOf": [
+                                    {
+                                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                        "type": "object",
+                                        "properties": {
+                                            "gid": {
+                                                "description": "Globally unique identifier of the resource, as a string.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "12345",
+                                                "x-insert-after": false
+                                            },
+                                            "resource_type": {
+                                                "description": "The base type of this resource.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "task",
+                                                "x-insert-after": "gid"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "object",
+                                        "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
+                                        "x-docs-overrides": {
+                                            "properties.resource_type.example": "workspace"
+                                        },
+                                        "properties": {
+                                            "name": {
+                                                "description": "The name of the workspace.",
+                                                "type": "string",
+                                                "example": "My Company Workspace"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
                         }
                     }
-                },
-                {
-                    "type": "object",
-                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "*Read-only except when same user as requester*. The user’s name.",
-                            "example": "Greg Sanchez"
-                        }
-                    }
-                }
-            ]
-        },
-        "workspace": {
-            "allOf": [
-                {
-                    "description": "A generic Asana Resource, containing a globally unique identifier.",
-                    "type": "object",
-                    "properties": {
-                        "gid": {
-                            "description": "Globally unique identifier of the resource, as a string.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "12345",
-                            "x-insert-after": false
-                        },
-                        "resource_type": {
-                            "description": "The base type of this resource.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "task",
-                            "x-insert-after": "gid"
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
-                    "properties": {
-                        "name": {
-                            "description": "The name of the workspace.",
-                            "type": "string",
-                            "example": "My Company Workspace"
-                        }
-                    }
-                }
-            ]
+                ]
+            }
         }
     }
 }

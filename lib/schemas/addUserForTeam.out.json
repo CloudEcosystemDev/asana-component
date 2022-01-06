@@ -1,7 +1,7 @@
 {
     "type": "object",
     "properties": {
-        "user": {
+        "data": {
             "allOf": [
                 {
                     "description": "A generic Asana Resource, containing a globally unique identifier.",
@@ -25,56 +25,95 @@
                 },
                 {
                     "type": "object",
-                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                    "description": "This object represents a user's connection to a team.",
+                    "x-docs-overrides": {
+                        "properties.resource_type.example": "team_membership"
+                    },
                     "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "*Read-only except when same user as requester*. The user’s name.",
-                            "example": "Greg Sanchez"
-                        }
-                    }
-                }
-            ]
-        },
-        "team": {
-            "allOf": [
-                {
-                    "description": "A generic Asana Resource, containing a globally unique identifier.",
-                    "type": "object",
-                    "properties": {
-                        "gid": {
-                            "description": "Globally unique identifier of the resource, as a string.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "12345",
-                            "x-insert-after": false
+                        "user": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "user"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                            "example": "Greg Sanchez"
+                                        }
+                                    }
+                                }
+                            ]
                         },
-                        "resource_type": {
-                            "description": "The base type of this resource.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "task",
-                            "x-insert-after": "gid"
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.",
-                    "properties": {
-                        "name": {
-                            "description": "The name of the team.",
-                            "type": "string",
-                            "example": "Marketing"
+                        "team": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "team"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of the team.",
+                                            "type": "string",
+                                            "example": "Marketing"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "is_guest": {
+                            "type": "boolean",
+                            "description": "Describes if the user is a guest in the team.",
+                            "example": false
                         }
                     }
                 }
             ]
-        },
-        "is_guest": {
-            "type": "boolean",
-            "description": "Describes if the user is a guest in the team.",
-            "example": false
         }
     }
 }

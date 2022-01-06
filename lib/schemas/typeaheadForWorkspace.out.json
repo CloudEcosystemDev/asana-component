@@ -1,10 +1,43 @@
 {
     "type": "object",
+    "description": "A generic list of objects, such as those returned by the typeahead search endpoint.",
     "properties": {
-        "name": {
-            "description": "The name of the object.",
-            "type": "string",
-            "example": "Bug Task"
+        "data": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                        "type": "object",
+                        "properties": {
+                            "gid": {
+                                "description": "Globally unique identifier of the resource, as a string.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "12345",
+                                "x-insert-after": false
+                            },
+                            "resource_type": {
+                                "description": "The base type of this resource.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "task",
+                                "x-insert-after": "gid"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "The name of the object.",
+                                "type": "string",
+                                "example": "Bug Task"
+                            }
+                        }
+                    }
+                ]
+            }
         }
     }
 }

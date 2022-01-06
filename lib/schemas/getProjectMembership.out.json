@@ -1,51 +1,134 @@
 {
     "type": "object",
     "properties": {
-        "project": {
-            "description": "[Opt In](/docs/input-output-options). The project the user is a member of.",
+        "data": {
             "allOf": [
                 {
-                    "description": "A generic Asana Resource, containing a globally unique identifier.",
-                    "type": "object",
-                    "properties": {
-                        "gid": {
-                            "description": "Globally unique identifier of the resource, as a string.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "12345",
-                            "x-insert-after": false
+                    "allOf": [
+                        {
+                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                            "type": "object",
+                            "properties": {
+                                "gid": {
+                                    "description": "Globally unique identifier of the resource, as a string.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "12345",
+                                    "x-insert-after": false
+                                },
+                                "resource_type": {
+                                    "description": "The base type of this resource.",
+                                    "type": "string",
+                                    "readOnly": true,
+                                    "example": "task",
+                                    "x-insert-after": "gid"
+                                }
+                            }
                         },
-                        "resource_type": {
-                            "description": "The base type of this resource.",
-                            "type": "string",
-                            "readOnly": true,
-                            "example": "task",
-                            "x-insert-after": "gid"
+                        {
+                            "type": "object",
+                            "description": "With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.",
+                            "x-docs-overrides": {
+                                "properties.resource_type.example": "project_membership"
+                            },
+                            "properties": {
+                                "user": {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "user"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                    "example": "Greg Sanchez"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
                     "type": "object",
-                    "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
                     "properties": {
-                        "name": {
-                            "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                        "project": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "project"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                                            "type": "string",
+                                            "example": "Stuff to buy"
+                                        }
+                                    }
+                                }
+                            ],
+                            "description": "[Opt In](/docs/input-output-options). The project the user is a member of."
+                        },
+                        "write_access": {
+                            "description": "Whether the user has full access to the project or has comment-only access.",
                             "type": "string",
-                            "example": "Stuff to buy"
+                            "enum": [
+                                "full_write",
+                                "comment_only"
+                            ],
+                            "readOnly": true,
+                            "example": "full_write"
                         }
                     }
                 }
             ]
-        },
-        "write_access": {
-            "description": "Whether the user has full access to the project or has comment-only access.",
-            "type": "string",
-            "enum": [
-                "full_write",
-                "comment_only"
-            ],
-            "readOnly": true,
-            "example": "full_write"
         }
     }
 }

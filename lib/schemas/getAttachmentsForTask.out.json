@@ -1,16 +1,52 @@
 {
     "type": "object",
     "properties": {
-        "name": {
-            "description": "The name of the file.",
-            "type": "string",
-            "readOnly": true,
-            "example": "Screenshot.png"
-        },
-        "resource_subtype": {
-            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.",
-            "type": "string",
-            "example": "dropbox"
+        "data": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "description": "A generic Asana Resource, containing a globally unique identifier.",
+                        "type": "object",
+                        "properties": {
+                            "gid": {
+                                "description": "Globally unique identifier of the resource, as a string.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "12345",
+                                "x-insert-after": false
+                            },
+                            "resource_type": {
+                                "description": "The base type of this resource.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "task",
+                                "x-insert-after": "gid"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "description": "An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.",
+                        "x-docs-overrides": {
+                            "properties.resource_type.example": "attachment"
+                        },
+                        "properties": {
+                            "name": {
+                                "description": "The name of the file.",
+                                "type": "string",
+                                "readOnly": true,
+                                "example": "Screenshot.png"
+                            },
+                            "resource_subtype": {
+                                "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `onedrive`, `box`, `vimeo`, and `external`.",
+                                "type": "string",
+                                "example": "dropbox"
+                            }
+                        }
+                    }
+                ]
+            }
         }
     }
 }
