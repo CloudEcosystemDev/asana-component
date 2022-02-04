@@ -69,7 +69,7 @@
                                 "html_text": {
                                     "description": "[Opt In](/docs/input-output-options). HTML formatted text for a comment. This will not include the name of the creator.",
                                     "type": "string",
-                                    "example": "<body>This is a comment.<body>"
+                                    "example": "<body>This is a comment.</body>"
                                 },
                                 "is_pinned": {
                                     "description": "*Conditional*. Whether the story should be pinned on the resource.",

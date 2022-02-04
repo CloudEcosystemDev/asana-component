@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "parent": {
+            "required": true,
+            "type": "string"
+        },
+        "created_since": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}
