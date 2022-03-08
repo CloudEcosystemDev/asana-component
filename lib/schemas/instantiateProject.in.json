@@ -1,0 +1,80 @@
+{
+    "type": "object",
+    "properties": {
+        "project_template_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "public"
+                    ],
+                    "properties": {
+                        "name": {
+                            "description": "The name of the new project.",
+                            "type": "string",
+                            "example": "New Project Name"
+                        },
+                        "team": {
+                            "description": "Sets the team of the new project. If the project template exists in an organization, specify team and not workspace.",
+                            "type": "string",
+                            "example": "12345"
+                        },
+                        "workspace": {
+                            "description": "Sets the workspace of the new project. Only specify workspace if the project template exists in a workspace.",
+                            "type": "string",
+                            "example": "12345"
+                        },
+                        "public": {
+                            "description": "Sets the project to public to its team.",
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "is_strict": {
+                            "description": "If set true, the endpoint returns an error if you forget to provide a calendar date value for any date variable. If set false, a deafult date is used for each unfulfilled date variable. For example, the current date is used as Start Date of a project in this case.",
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "requested_dates": {
+                            "description": "Array of mappings of date variables to calendar dates.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "gid": {
+                                        "description": "Globally unique identifier of date variable, as a string.",
+                                        "type": "string",
+                                        "example": "12345"
+                                    },
+                                    "value": {
+                                        "description": "The date with which the date variable should be replaced when instantiating a project. This takes a date with `YYYY-MM-DD` format.",
+                                        "type": "string",
+                                        "nullable": true,
+                                        "format": "date-time",
+                                        "example": "2022-01-01"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

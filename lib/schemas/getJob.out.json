@@ -123,6 +123,44 @@
                                     }
                                 }
                             ]
+                        },
+                        "new_project_template": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *project template* is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "project_template"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "Name of the project template.",
+                                            "type": "string",
+                                            "example": "Packing list"
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     }
                 }

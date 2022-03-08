@@ -1,0 +1,370 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "status_update"
+                                    },
+                                    "properties": {
+                                        "title": {
+                                            "description": "The title of the status update.",
+                                            "type": "string",
+                                            "example": "Status Update - Jun 15"
+                                        },
+                                        "resource_subtype": {
+                                            "type": "string",
+                                            "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe `resource_subtype`s for `status` objects represent the type of their parent.",
+                                            "enum": [
+                                                "project_status_update",
+                                                "portfolio_status_update",
+                                                "goal_status_update"
+                                            ],
+                                            "example": "project_status_update",
+                                            "readOnly": true
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "text",
+                                "status_type"
+                            ],
+                            "properties": {
+                                "text": {
+                                    "description": "The text content of the status update.",
+                                    "type": "string",
+                                    "example": "The project is moving forward according to plan..."
+                                },
+                                "html_text": {
+                                    "description": "[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.",
+                                    "type": "string",
+                                    "example": "<body>The project <strong>is</strong> moving forward according to plan...</body>"
+                                },
+                                "status_type": {
+                                    "description": "The type associated with the status update. This represents the current state of the object this object is on.",
+                                    "type": "string",
+                                    "enum": [
+                                        "on_track",
+                                        "at_risk",
+                                        "off_track",
+                                        "on_hold",
+                                        "complete",
+                                        "achieved",
+                                        "partial",
+                                        "missed",
+                                        "dropped"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "author": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "user"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                            "example": "Greg Sanchez"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "created_at": {
+                            "description": "The time at which this resource was created.",
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "example": "2012-02-22T02:06:58.147Z"
+                        },
+                        "created_by": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "user"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                            "example": "Greg Sanchez"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "hearted": {
+                            "description": "*Deprecated - please use liked instead* True if the status is hearted by the authorized user, false if not.",
+                            "type": "boolean",
+                            "example": true,
+                            "readOnly": true
+                        },
+                        "hearts": {
+                            "description": "*Deprecated - please use likes instead* Array of likes for users who have hearted this status.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "description": "An object to represent a user's like.",
+                                "properties": {
+                                    "gid": {
+                                        "description": "Globally unique identifier of the object, as a string.",
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "example": "12345"
+                                    },
+                                    "user": {
+                                        "allOf": [
+                                            {
+                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345",
+                                                        "x-insert-after": false
+                                                    },
+                                                    "resource_type": {
+                                                        "description": "The base type of this resource.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "task",
+                                                        "x-insert-after": "gid"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "type": "object",
+                                                "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                "x-docs-overrides": {
+                                                    "properties.resource_type.example": "user"
+                                                },
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                        "example": "Greg Sanchez"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "readOnly": true
+                        },
+                        "liked": {
+                            "description": "True if the status is liked by the authorized user, false if not.",
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "likes": {
+                            "description": "Array of likes for users who have liked this status.",
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "description": "An object to represent a user's like.",
+                                "properties": {
+                                    "gid": {
+                                        "description": "Globally unique identifier of the object, as a string.",
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "example": "12345"
+                                    },
+                                    "user": {
+                                        "allOf": [
+                                            {
+                                                "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                "type": "object",
+                                                "properties": {
+                                                    "gid": {
+                                                        "description": "Globally unique identifier of the resource, as a string.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "12345",
+                                                        "x-insert-after": false
+                                                    },
+                                                    "resource_type": {
+                                                        "description": "The base type of this resource.",
+                                                        "type": "string",
+                                                        "readOnly": true,
+                                                        "example": "task",
+                                                        "x-insert-after": "gid"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "type": "object",
+                                                "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                "x-docs-overrides": {
+                                                    "properties.resource_type.example": "user"
+                                                },
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                        "example": "Greg Sanchez"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "readOnly": true
+                        },
+                        "modified_at": {
+                            "description": "The time at which this project status was last modified.\n*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the status.*",
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "example": "2012-02-22T02:06:58.147Z"
+                        },
+                        "num_hearts": {
+                            "description": "*Deprecated - please use likes instead* The number of users who have hearted this status.",
+                            "type": "integer",
+                            "example": 5,
+                            "readOnly": true
+                        },
+                        "num_likes": {
+                            "description": "The number of users who have liked this status.",
+                            "type": "integer",
+                            "example": 5,
+                            "readOnly": true
+                        },
+                        "parent": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "project"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                                                    "type": "string",
+                                                    "example": "Stuff to buy"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "The parent of the status update. This can be a project, goal or portfolio, and indicates that this status was sent on that object."
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

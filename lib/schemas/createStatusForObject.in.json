@@ -1,0 +1,134 @@
+{
+    "type": "object",
+    "properties": {
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "status_update"
+                                            },
+                                            "properties": {
+                                                "title": {
+                                                    "description": "The title of the status update.",
+                                                    "type": "string",
+                                                    "example": "Status Update - Jun 15"
+                                                },
+                                                "resource_subtype": {
+                                                    "type": "string",
+                                                    "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe `resource_subtype`s for `status` objects represent the type of their parent.",
+                                                    "enum": [
+                                                        "project_status_update",
+                                                        "portfolio_status_update",
+                                                        "goal_status_update"
+                                                    ],
+                                                    "example": "project_status_update",
+                                                    "readOnly": true
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "required": [
+                                        "text",
+                                        "status_type"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "description": "The text content of the status update.",
+                                            "type": "string",
+                                            "example": "The project is moving forward according to plan..."
+                                        },
+                                        "html_text": {
+                                            "description": "[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.",
+                                            "type": "string",
+                                            "example": "<body>The project <strong>is</strong> moving forward according to plan...</body>"
+                                        },
+                                        "status_type": {
+                                            "description": "The type associated with the status update. This represents the current state of the object this object is on.",
+                                            "type": "string",
+                                            "enum": [
+                                                "on_track",
+                                                "at_risk",
+                                                "off_track",
+                                                "on_hold",
+                                                "complete",
+                                                "achieved",
+                                                "partial",
+                                                "missed",
+                                                "dropped"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "parent"
+                            ],
+                            "properties": {
+                                "parent": {
+                                    "allOf": [
+                                        {
+                                            "type": "string",
+                                            "description": "The id of parent to send this status update to. This can be a project, goal or portfolio."
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

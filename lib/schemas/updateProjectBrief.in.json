@@ -1,0 +1,89 @@
+{
+    "type": "object",
+    "properties": {
+        "project_brief_gid": {
+            "required": true,
+            "type": "string"
+        },
+        "opt_pretty": {
+            "required": false,
+            "type": "boolean"
+        },
+        "opt_fields": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *Project Brief* allows you to explain the what and why of the project to your team.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "project_brief"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "title": {
+                                            "description": "The title of the project brief.",
+                                            "type": "string",
+                                            "example": "Stuff to buy — Project Brief"
+                                        },
+                                        "html_text": {
+                                            "description": "HTML formatted text for the project brief.",
+                                            "type": "string",
+                                            "example": "<body>This is a <strong>project brief</strong>.</body>"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "text": {
+                                    "description": "The plain text of the project brief. When writing to a project brief, you can specify either `html_text` (preferred) or `text`, but not both.",
+                                    "type": "string",
+                                    "example": "This is a project brief."
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

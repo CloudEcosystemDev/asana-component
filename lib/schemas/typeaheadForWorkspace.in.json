@@ -10,8 +10,9 @@
             "type": "string",
             "enum": [
                 "custom_field",
-                "portfolio",
                 "project",
+                "project_template",
+                "portfolio",
                 "tag",
                 "task",
                 "user"

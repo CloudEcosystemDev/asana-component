@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "workspace": {
+            "type": "string"
+        },
+        "team": {
+            "type": "string"
+        },
+        "limit": {
+            "type": "integer"
+        },
+        "offset": {
+            "type": "string"
+        }
+    }
+}

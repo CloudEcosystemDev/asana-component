@@ -112,6 +112,11 @@
                                     "type": "string",
                                     "description": "Gid of an object.",
                                     "example": "167589"
+                                },
+                                "public": {
+                                    "type": "boolean",
+                                    "description": "True if the portfolio is public to its workspace members.",
+                                    "example": false
                                 }
                             }
                         }

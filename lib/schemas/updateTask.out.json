@@ -942,6 +942,7 @@
                                                 }
                                             },
                                             "created_by": {
+                                                "nullable": true,
                                                 "allOf": [
                                                     {
                                                         "description": "A generic Asana Resource, containing a globally unique identifier.",
