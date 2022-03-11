@@ -24,7 +24,8 @@
                 "project",
                 "tag",
                 "task",
-                "user"
+                "user",
+                "project_template"
             ],
             "default": "project"
         },

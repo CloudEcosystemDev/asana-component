@@ -27,30 +27,162 @@
             ],
             "default": "milestone"
         },
+        "assignee.any": {
+            "type": "string"
+        },
+        "assignee.not": {
+            "type": "string"
+        },
+        "portfolios.any": {
+            "type": "string"
+        },
+        "projects.any": {
+            "type": "string"
+        },
+        "projects.not": {
+            "type": "string"
+        },
+        "projects.all": {
+            "type": "string"
+        },
+        "sections.any": {
+            "type": "string"
+        },
+        "sections.not": {
+            "type": "string"
+        },
+        "sections.all": {
+            "type": "string"
+        },
+        "tags.any": {
+            "type": "string"
+        },
+        "tags.not": {
+            "type": "string"
+        },
+        "tags.all": {
+            "type": "string"
+        },
+        "teams.any": {
+            "type": "string"
+        },
+        "followers.not": {
+            "type": "string"
+        },
+        "created_by.any": {
+            "type": "string"
+        },
+        "created_by.not": {
+            "type": "string"
+        },
+        "assigned_by.any": {
+            "type": "string"
+        },
+        "assigned_by.not": {
+            "type": "string"
+        },
+        "liked_by.not": {
+            "type": "string"
+        },
+        "commented_on_by.not": {
+            "type": "string"
+        },
+        "due_on.before": {
+            "type": "string",
+            "format": "date"
+        },
+        "due_on.after": {
+            "type": "string",
+            "format": "date"
+        },
         "due_on": {
             "type": "string",
             "format": "date",
             "nullable": true
+        },
+        "due_at.before": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "due_at.after": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "start_on.before": {
+            "type": "string",
+            "format": "date"
+        },
+        "start_on.after": {
+            "type": "string",
+            "format": "date"
         },
         "start_on": {
             "type": "string",
             "format": "date",
             "nullable": true
         },
+        "created_on.before": {
+            "type": "string",
+            "format": "date"
+        },
+        "created_on.after": {
+            "type": "string",
+            "format": "date"
+        },
         "created_on": {
             "type": "string",
             "format": "date",
             "nullable": true
+        },
+        "created_at.before": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "created_at.after": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "completed_on.before": {
+            "type": "string",
+            "format": "date"
+        },
+        "completed_on.after": {
+            "type": "string",
+            "format": "date"
         },
         "completed_on": {
             "type": "string",
             "format": "date",
             "nullable": true
         },
+        "completed_at.before": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "completed_at.after": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "modified_on.before": {
+            "type": "string",
+            "format": "date"
+        },
+        "modified_on.after": {
+            "type": "string",
+            "format": "date"
+        },
         "modified_on": {
             "type": "string",
             "format": "date",
             "nullable": true
+        },
+        "modified_at.before": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "modified_at.after": {
+            "type": "string",
+            "format": "date-time"
         },
         "is_blocking": {
             "type": "boolean"
@@ -81,138 +213,6 @@
         "sort_ascending": {
             "type": "boolean",
             "default": false
-        },
-        "assignee_any": {
-            "type": "string"
-        },
-        "assignee_not": {
-            "type": "string"
-        },
-        "portfolios_any": {
-            "type": "string"
-        },
-        "projects_any": {
-            "type": "string"
-        },
-        "projects_not": {
-            "type": "string"
-        },
-        "projects_all": {
-            "type": "string"
-        },
-        "sections_any": {
-            "type": "string"
-        },
-        "sections_not": {
-            "type": "string"
-        },
-        "sections_all": {
-            "type": "string"
-        },
-        "tags_any": {
-            "type": "string"
-        },
-        "tags_not": {
-            "type": "string"
-        },
-        "tags_all": {
-            "type": "string"
-        },
-        "teams_any": {
-            "type": "string"
-        },
-        "followers_not": {
-            "type": "string"
-        },
-        "created_by_any": {
-            "type": "string"
-        },
-        "created_by_not": {
-            "type": "string"
-        },
-        "assigned_by_any": {
-            "type": "string"
-        },
-        "assigned_by_not": {
-            "type": "string"
-        },
-        "liked_by_not": {
-            "type": "string"
-        },
-        "commented_on_by_not": {
-            "type": "string"
-        },
-        "due_on_before": {
-            "type": "string",
-            "format": "date"
-        },
-        "due_on_after": {
-            "type": "string",
-            "format": "date"
-        },
-        "due_at_before": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "due_at_after": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "start_on_before": {
-            "type": "string",
-            "format": "date"
-        },
-        "start_on_after": {
-            "type": "string",
-            "format": "date"
-        },
-        "created_on_before": {
-            "type": "string",
-            "format": "date"
-        },
-        "created_on_after": {
-            "type": "string",
-            "format": "date"
-        },
-        "created_at_before": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "created_at_after": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "completed_on_before": {
-            "type": "string",
-            "format": "date"
-        },
-        "completed_on_after": {
-            "type": "string",
-            "format": "date"
-        },
-        "completed_at_before": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "completed_at_after": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "modified_on_before": {
-            "type": "string",
-            "format": "date"
-        },
-        "modified_on_after": {
-            "type": "string",
-            "format": "date"
-        },
-        "modified_at_before": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "modified_at_after": {
-            "type": "string",
-            "format": "date-time"
         }
     }
 }

@@ -1,0 +1,211 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *project template* is an object that allows new projects to be created with a predefined setup, which may include tasks, sections, Rules, etc. It simplifies the process of running a workflow that involves a similar set of work every time.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "project_template"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "description": "Name of the project template.",
+                                            "type": "string",
+                                            "example": "Packing list"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "description": {
+                                    "description": "Free-form textual information associated with the project template",
+                                    "type": "string",
+                                    "example": "These are things we need to pack for a trip."
+                                },
+                                "html_description": {
+                                    "description": "The description of the project template with formatting as HTML.",
+                                    "type": "string",
+                                    "example": "<body>These are things we need to pack for a trip.</body>"
+                                },
+                                "public": {
+                                    "description": "True if the project template is public to its team.",
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "owner": {
+                                    "description": "The current owner of the project template, may be null.",
+                                    "nullable": true,
+                                    "allOf": [
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "gid": {
+                                                            "description": "Globally unique identifier of the resource, as a string.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "12345",
+                                                            "x-insert-after": false
+                                                        },
+                                                        "resource_type": {
+                                                            "description": "The base type of this resource.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "task",
+                                                            "x-insert-after": "gid"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                                    "x-docs-overrides": {
+                                                        "properties.resource_type.example": "user"
+                                                    },
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string",
+                                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                                            "example": "Greg Sanchez"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "team": {
+                                    "allOf": [
+                                        {
+                                            "allOf": [
+                                                {
+                                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "gid": {
+                                                            "description": "Globally unique identifier of the resource, as a string.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "12345",
+                                                            "x-insert-after": false
+                                                        },
+                                                        "resource_type": {
+                                                            "description": "The base type of this resource.",
+                                                            "type": "string",
+                                                            "readOnly": true,
+                                                            "example": "task",
+                                                            "x-insert-after": "gid"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "object",
+                                                    "description": "A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.",
+                                                    "x-docs-overrides": {
+                                                        "properties.resource_type.example": "team"
+                                                    },
+                                                    "properties": {
+                                                        "name": {
+                                                            "description": "The name of the team.",
+                                                            "type": "string",
+                                                            "example": "Marketing"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "requested_dates": {
+                                    "description": "Array of date variables in this project template. Calendar dates must be provided for these variables when instantiating a project.",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "gid": {
+                                                "description": "Globally unique identifier of date variable, as a string.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "12345"
+                                            },
+                                            "name": {
+                                                "description": "The name of the date variable.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "Start Date"
+                                            },
+                                            "description": {
+                                                "description": "The description of what the date variable is used for when instantiating a project.",
+                                                "type": "string",
+                                                "readOnly": true,
+                                                "example": "Choose a start date for your project."
+                                            }
+                                        }
+                                    },
+                                    "readOnly": true
+                                },
+                                "color": {
+                                    "description": "Color of the project template.",
+                                    "type": "string",
+                                    "nullable": true,
+                                    "enum": [
+                                        "dark-pink",
+                                        "dark-green",
+                                        "dark-blue",
+                                        "dark-red",
+                                        "dark-teal",
+                                        "dark-brown",
+                                        "dark-orange",
+                                        "dark-purple",
+                                        "dark-warm-gray",
+                                        "light-pink",
+                                        "light-green",
+                                        "light-blue",
+                                        "light-red",
+                                        "light-teal",
+                                        "light-brown",
+                                        "light-orange",
+                                        "light-purple",
+                                        "light-warm-gray"
+                                    ],
+                                    "example": "light-green"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

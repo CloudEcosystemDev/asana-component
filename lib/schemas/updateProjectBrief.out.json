@@ -1,0 +1,121 @@
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *Project Brief* allows you to explain the what and why of the project to your team.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "project_brief"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "description": "The title of the project brief.",
+                                    "type": "string",
+                                    "example": "Stuff to buy — Project Brief"
+                                },
+                                "html_text": {
+                                    "description": "HTML formatted text for the project brief.",
+                                    "type": "string",
+                                    "example": "<body>This is a <strong>project brief</strong>.</body>"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "text": {
+                            "description": "[Opt In](/docs/input-output-options). The plain text of the project brief.",
+                            "type": "string",
+                            "example": "This is a project brief."
+                        },
+                        "permalink_url": {
+                            "type": "string",
+                            "readOnly": true,
+                            "description": "A url that points directly to the object within Asana.",
+                            "example": "https://app.asana.com/0/11111111/22222222"
+                        },
+                        "project": {
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "project"
+                                            },
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                                                    "type": "string",
+                                                    "example": "Stuff to buy"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "The project with which this project brief is associated."
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

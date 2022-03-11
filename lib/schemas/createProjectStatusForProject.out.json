@@ -1,1 +1,175 @@
-{}
+{
+    "type": "object",
+    "properties": {
+        "data": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "*Deprecated: new integrations should prefer the `status_update` resource.*\nA *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: \"green\" for projects that are on track, \"yellow\" for projects at risk, and \"red\" for projects that are behind.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "project_status"
+                                    },
+                                    "properties": {
+                                        "title": {
+                                            "description": "The title of the project status update.",
+                                            "type": "string",
+                                            "example": "Status Update - Jun 15"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "object",
+                            "required": [
+                                "text",
+                                "color"
+                            ],
+                            "properties": {
+                                "text": {
+                                    "description": "The text content of the status update.",
+                                    "type": "string",
+                                    "example": "The project is moving forward according to plan..."
+                                },
+                                "html_text": {
+                                    "description": "[Opt In](/docs/input-output-options). The text content of the status update with formatting as HTML.",
+                                    "type": "string",
+                                    "example": "<body>The project <strong>is</strong> moving forward according to plan...</body>"
+                                },
+                                "color": {
+                                    "description": "The color associated with the status update.",
+                                    "type": "string",
+                                    "enum": [
+                                        "green",
+                                        "yellow",
+                                        "red",
+                                        "blue"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "author": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "user"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                            "example": "Greg Sanchez"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "created_at": {
+                            "description": "The time at which this resource was created.",
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "example": "2012-02-22T02:06:58.147Z"
+                        },
+                        "created_by": {
+                            "allOf": [
+                                {
+                                    "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                    "type": "object",
+                                    "properties": {
+                                        "gid": {
+                                            "description": "Globally unique identifier of the resource, as a string.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "12345",
+                                            "x-insert-after": false
+                                        },
+                                        "resource_type": {
+                                            "description": "The base type of this resource.",
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "example": "task",
+                                            "x-insert-after": "gid"
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.",
+                                    "x-docs-overrides": {
+                                        "properties.resource_type.example": "user"
+                                    },
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "*Read-only except when same user as requester*. The user’s name.",
+                                            "example": "Greg Sanchez"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "modified_at": {
+                            "description": "The time at which this project status was last modified.\n*Note: This does not currently reflect any changes in associations such as comments that may have been added or removed from the project status.*",
+                            "type": "string",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "example": "2012-02-22T02:06:58.147Z"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

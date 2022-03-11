@@ -626,6 +626,7 @@
                                                                         }
                                                                     },
                                                                     "created_by": {
+                                                                        "nullable": true,
                                                                         "allOf": [
                                                                             {
                                                                                 "description": "A generic Asana Resource, containing a globally unique identifier.",
@@ -678,6 +679,61 @@
                                     }
                                 ]
                             }
+                        },
+                        "current_status_update": {
+                            "description": "The latest `status_update` posted to this portfolio.",
+                            "nullable": true,
+                            "allOf": [
+                                {
+                                    "allOf": [
+                                        {
+                                            "description": "A generic Asana Resource, containing a globally unique identifier.",
+                                            "type": "object",
+                                            "properties": {
+                                                "gid": {
+                                                    "description": "Globally unique identifier of the resource, as a string.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "12345",
+                                                    "x-insert-after": false
+                                                },
+                                                "resource_type": {
+                                                    "description": "The base type of this resource.",
+                                                    "type": "string",
+                                                    "readOnly": true,
+                                                    "example": "task",
+                                                    "x-insert-after": "gid"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "description": "A *status update* is an update on the progress of a particular project, portfolio, or goal, and is sent out to all of its parent's followers when created. These updates include both text describing the update and a `status_type` intended to represent the overall state of the project.",
+                                            "x-docs-overrides": {
+                                                "properties.resource_type.example": "status_update"
+                                            },
+                                            "properties": {
+                                                "title": {
+                                                    "description": "The title of the status update.",
+                                                    "type": "string",
+                                                    "example": "Status Update - Jun 15"
+                                                },
+                                                "resource_subtype": {
+                                                    "type": "string",
+                                                    "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe `resource_subtype`s for `status` objects represent the type of their parent.",
+                                                    "enum": [
+                                                        "project_status_update",
+                                                        "portfolio_status_update",
+                                                        "goal_status_update"
+                                                    ],
+                                                    "example": "project_status_update",
+                                                    "readOnly": true
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
                         },
                         "due_on": {
                             "description": "The localized day on which this portfolio is due. This takes a date with format YYYY-MM-DD.",
@@ -824,6 +880,11 @@
                             "readOnly": true,
                             "description": "A url that points directly to the object within Asana.",
                             "example": "https://app.asana.com/0/resource/123456789/list"
+                        },
+                        "public": {
+                            "description": "True if the portfolio is public to its workspace members.",
+                            "type": "boolean",
+                            "example": false
                         }
                     }
                 }
