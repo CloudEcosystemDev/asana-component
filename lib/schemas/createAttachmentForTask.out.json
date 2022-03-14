@@ -65,6 +65,14 @@
                             "nullable": true,
                             "example": "https://s3.amazonaws.com/assets/123/Screenshot.png"
                         },
+                        "permanent_url": {
+                            "description": "",
+                            "type": "string",
+                            "format": "uri",
+                            "readOnly": true,
+                            "nullable": true,
+                            "example": "https://s3.amazonaws.com/assets/123/Screenshot.png"
+                        },
                         "host": {
                             "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive`, `box`, and `vimeo`.",
                             "type": "string",
@@ -114,7 +122,15 @@
                                 {
                                     "type": "object",
                                     "description": "The task this attachment is attached to.",
-                                    "readOnly": true
+                                    "readOnly": true,
+                                    "properties": {
+                                        "resource_subtype": {
+                                            "description": "The resource subtype of the parent resource that the filter applies to.",
+                                            "type": "string",
+                                            "example": "default_task",
+                                            "nullable": true
+                                        }
+                                    }
                                 }
                             ]
                         },
