@@ -90,49 +90,6 @@
                                 "image_128x128": "https://...",
                                 "image_1024x1024": "https://..."
                             }
-                        },
-                        "workspaces": {
-                            "description": "Workspaces and organizations this user may access.\nNote\\: The API will only return workspaces and organizations that also contain the authenticated user.",
-                            "readOnly": true,
-                            "type": "array",
-                            "items": {
-                                "allOf": [
-                                    {
-                                        "description": "A generic Asana Resource, containing a globally unique identifier.",
-                                        "type": "object",
-                                        "properties": {
-                                            "gid": {
-                                                "description": "Globally unique identifier of the resource, as a string.",
-                                                "type": "string",
-                                                "readOnly": true,
-                                                "example": "12345",
-                                                "x-insert-after": false
-                                            },
-                                            "resource_type": {
-                                                "description": "The base type of this resource.",
-                                                "type": "string",
-                                                "readOnly": true,
-                                                "example": "task",
-                                                "x-insert-after": "gid"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "type": "object",
-                                        "description": "A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.",
-                                        "x-docs-overrides": {
-                                            "properties.resource_type.example": "workspace"
-                                        },
-                                        "properties": {
-                                            "name": {
-                                                "description": "The name of the workspace.",
-                                                "type": "string",
-                                                "example": "My Company Workspace"
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
                         }
                     }
                 }
