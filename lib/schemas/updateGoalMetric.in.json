@@ -1,6 +1,10 @@
 {
     "type": "object",
     "properties": {
+        "goal_gid": {
+            "required": true,
+            "type": "string"
+        },
         "opt_pretty": {
             "required": false,
             "type": "boolean"
