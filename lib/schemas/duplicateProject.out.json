@@ -42,7 +42,7 @@
                             "enum": [
                                 "not_started",
                                 "in_progress",
-                                "completed",
+                                "succeeded",
                                 "failed"
                             ],
                             "readOnly": true,
